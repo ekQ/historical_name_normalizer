@@ -19,3 +19,5 @@ which outputs
 ```
 henrik
 ```
+
+For more details, see file: name_normalizer.py
