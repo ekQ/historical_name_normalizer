@@ -21,3 +21,12 @@ henrik
 ```
 
 For more details, see file: name_normalizer.py
+
+## Data
+The name mappings are based on manually curated clusters of names referring to the same entity. These mappings have been obtained from the [Genealogical Society of Finland](http://www.genealogia.fi/index.php?language_id=1&p=226) and they are used by the [HisKi](http://hiski.genealogia.fi/hiski?en) program.
+
+Each name mapping file, available under the data directory, contains the following columns:
+1. Name variation
+2. Normalized name
+3. Popularity of the name variation in HisKi data
+4. Popularity of all the names under the same normalized name in HisKi data
