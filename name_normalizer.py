@@ -68,14 +68,6 @@ def clean_name(name, name_type='first'):
     return name
 
 
-def death_cause_post_cleaning(cause):
-    cause = re.sub(u'^af ', u'', cause)
-    cause = re.sub(u'^i ', u'', cause)
-    cause = re.sub(u'^död af ', u'', cause)
-    cause = re.sub(u'^död i ', u'', cause)
-    return cause
-
-
 class NameNormalizer:
     def __init__(self, name_type, do_clean_names=True):
         if name_type not in NAME_TYPES:
