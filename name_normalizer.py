@@ -20,6 +20,8 @@ WARNINGS = False
 
 
 def ensure_unicode(s):
+    if s is None:
+        return u''
     if isinstance(s, unicode):
         return s
     if isinstance(s, str):
@@ -42,7 +44,7 @@ def clean_name(name, name_type='first'):
     Return:
         The cleaned name string.
     '''
-    if name is None:
+    if name is None or len(name) == 0:
         return u""
     name = name.lower().split('\k')[0].strip()
     if name_type != 'dont_substitute':
@@ -98,7 +100,12 @@ class NameNormalizer:
         success = False
         if self.do_clean_names:
             name = clean_name(name, self.name_type)
-        if name in self.name_map:
+        if len(name) == 0:
+            normalized = u''
+            success = True
+            info['nearest'] = name
+            info['sim'] = 1
+        elif name in self.name_map:
             if DEBUG:
                 print u"Found exact match: {} -> {}".format(name, self.name_map[name][0])
             normalized = self.name_map[name][0]
