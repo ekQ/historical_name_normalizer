@@ -82,7 +82,8 @@ class NameNormalizer:
         self.name_map = self._load_name_map()
         self.name_trie = self._construct_trie()
 
-    def normalize(self, name, find_nearest=True, info=None):
+    def normalize(self, name, find_nearest=True, info=None,
+                  only_first_token=False):
         '''
         Returns a normalized form of the name.
 
@@ -91,6 +92,9 @@ class NameNormalizer:
 
         If info dictionary is provided, some extra data about the call will be
         stored there.
+
+        only_first_token indicates whether to split the name string into tokens
+        and only keep the first token.
         '''
         t0 = time.time()
         name = u(name)
@@ -100,6 +104,8 @@ class NameNormalizer:
         success = False
         if self.do_clean_names:
             name = clean_name(name, self.name_type)
+        if only_first_token and len(name.strip()) > 0:
+            name = name.split()[0]
         if len(name) == 0:
             normalized = u''
             success = True
